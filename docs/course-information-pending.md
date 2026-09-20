@@ -106,3 +106,9 @@ Documento interno para revisar con el propietario del Instituto Técnico Rivedu.
 - Antes de publicar, configurar el dominio definitivo en el proveedor de hosting y verificar las variantes elegidas.
 - Configurar DNS y redirecciones únicamente después de confirmar el proveedor y el dominio final.
 - Revisar sitemap, robots, enlaces canónicos y Search Console con el dominio operativo.
+
+## Estados SEO de la publicación
+
+- Vista previa: la aplicación usa `https://instituto-tecnico-rivedu.vercel.app`, mantiene `noindex` y genera canonical, Open Graph, sitemap y robots con esa URL.
+- Lanzamiento: configurar `NEXT_PUBLIC_SITE_URL=https://rivedu.com` y `NEXT_PUBLIC_SITE_LAUNCHED=true` en el proveedor de hosting únicamente después de adquirir, conectar y verificar el dominio.
+- No activar el estado de lanzamiento mientras `rivedu.com` no resuelva y el propietario no haya aprobado la publicación.

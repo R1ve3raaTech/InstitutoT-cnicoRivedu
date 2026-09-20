@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { siteConfig } from "../lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,18 +15,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rivedu.com"),
+  metadataBase: new URL(siteConfig.url),
   title: "Instituto Técnico Rivedu",
   description: "Cursos y capacitaciones para su desarrollo personal y profesional.",
   alternates: {
     canonical: "/",
   },
+  robots: siteConfig.isLaunched
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
   openGraph: {
     title: "Instituto Técnico Rivedu",
     description: "Cursos y capacitaciones para su desarrollo personal y profesional.",
     locale: "es_CR",
     type: "website",
-    url: "https://rivedu.com/",
+    url: siteConfig.url,
   },
 };
 

@@ -1,10 +1,11 @@
+import Link from "next/link";
 import WhatsAppChooser from "./WhatsAppChooser";
 
 const featuredCourses = [
-  "Excel",
-  "Inglés Conversacional",
-  "Bachillerato por Madurez",
-  "CCNA",
+  { title: "Excel", slug: "excel-desde-cero" },
+  { title: "Inglés Conversacional", slug: "ingles-conversacional" },
+  { title: "Bachillerato por Madurez", slug: "bachillerato-por-madurez" },
+  { title: "CCNA", slug: "ccna" },
 ];
 
 export default function Hero() {
@@ -25,11 +26,11 @@ export default function Hero() {
           <p className="hero-offer__title">Encuentre una opción para su próximo paso.</p>
           <div className="hero-offer__courses">
             {featuredCourses.map((course, index) => (
-              <a href="#cursos" className="hero-course" key={course}>
+              <Link href={`/cursos/${course.slug}`} className="hero-course" key={course.slug}>
                 <span className="hero-course__index">0{index + 1}</span>
-                <span>{course}</span>
+                <span>{course.title}</span>
                 <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

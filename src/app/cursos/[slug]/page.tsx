@@ -4,6 +4,7 @@ import CourseDetail from "../../../components/CourseDetail";
 import Footer from "../../../components/Footer";
 import Navbar from "../../../components/Navbar";
 import { courses, getCourseBySlug } from "../../../data/courses";
+import { siteConfig } from "../../../lib/site";
 
 type CoursePageProps = {
   params: Promise<{ slug: string }>;
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: CoursePageProps): Promise<Met
     openGraph: {
       title: `${course.title} | Instituto Técnico Rivedu`,
       description: `Consulte información sobre el curso ${course.title} de Instituto Técnico Rivedu.`,
-      url: `https://rivedu.com/cursos/${course.slug}`,
+      url: `${siteConfig.url}/cursos/${course.slug}`,
       locale: "es_CR",
       type: "website",
     },
