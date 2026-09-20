@@ -22,6 +22,16 @@ export async function generateMetadata({ params }: CoursePageProps): Promise<Met
   return {
     title: `${course.title} | Instituto Técnico Rivedu`,
     description: `Consulte información sobre el curso ${course.title} de Instituto Técnico Rivedu.`,
+    alternates: {
+      canonical: `/cursos/${course.slug}`,
+    },
+    openGraph: {
+      title: `${course.title} | Instituto Técnico Rivedu`,
+      description: `Consulte información sobre el curso ${course.title} de Instituto Técnico Rivedu.`,
+      url: `https://rivedu.com/cursos/${course.slug}`,
+      locale: "es_CR",
+      type: "website",
+    },
   };
 }
 

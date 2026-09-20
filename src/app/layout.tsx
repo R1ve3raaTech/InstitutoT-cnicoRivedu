@@ -14,13 +14,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rivedu.com"),
   title: "Instituto Técnico Rivedu",
   description: "Cursos y capacitaciones para su desarrollo personal y profesional.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Instituto Técnico Rivedu",
     description: "Cursos y capacitaciones para su desarrollo personal y profesional.",
     locale: "es_CR",
     type: "website",
+    url: "https://rivedu.com/",
   },
 };
 

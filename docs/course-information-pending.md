@@ -102,3 +102,7 @@ Documento interno para revisar con el propietario del Instituto Técnico Rivedu.
 - Confirmar horarios, precios, modalidad, duración, fechas, requisitos y certificación, si corresponden.
 - Confirmar estado de disponibilidad antes de publicar llamados de inscripción.
 - Confirmar el mensaje y número de WhatsApp preferido para cada consulta, sin asignar funciones diferentes a los números actuales.
+- El dominio previsto `https://rivedu.com` queda preparado en la aplicación, pero su conexión, compra, verificación y estado operativo siguen pendientes.
+- Antes de publicar, configurar el dominio definitivo en el proveedor de hosting y verificar las variantes elegidas.
+- Configurar DNS y redirecciones únicamente después de confirmar el proveedor y el dominio final.
+- Revisar sitemap, robots, enlaces canónicos y Search Console con el dominio operativo.

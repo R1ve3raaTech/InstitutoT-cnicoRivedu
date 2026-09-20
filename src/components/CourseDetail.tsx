@@ -41,20 +41,17 @@ export default function CourseDetail({ course }: CourseDetailProps) {
 
           <div className="course-education">
             <section className="course-education__intro" aria-labelledby="course-introduction">
-              <p className="eyebrow"><span /> Introducción educativa</p>
-              <h2 id="course-introduction">Sobre esta área</h2>
+              <h2 id="course-introduction">{educationalContent.introductionTitle}</h2>
               <p>{educationalContent.introduction}</p>
               <p>{educationalContent.overview}</p>
             </section>
             <div className="course-education__columns">
               <section className="course-education__section" aria-labelledby="course-applications">
-                <p className="eyebrow"><span /> Contextos de uso</p>
-                <h2 id="course-applications">Aplicaciones habituales</h2>
+                <h2 id="course-applications">{educationalContent.applicationsTitle}</h2>
                 <ul>{educationalContent.applications.map((item) => <li key={item}>{item}</li>)}</ul>
               </section>
               <section className="course-education__section" aria-labelledby="course-audience">
-                <p className="eyebrow"><span /> Público potencial</p>
-                <h2 id="course-audience">¿A quién puede interesarle?</h2>
+                <h2 id="course-audience">{educationalContent.audienceTitle}</h2>
                 <ul>{educationalContent.audience.map((item) => <li key={item}>{item}</li>)}</ul>
               </section>
             </div>

@@ -16,7 +16,7 @@ export default function Contact() {
         </div>
         <div className="contact-box__actions">
           {contacts.map((contact) => (
-            <a className="contact-link" href={contact.href} key={contact.href} target="_blank" rel="noreferrer">
+            <a className="contact-link" href={contact.href} key={contact.href} target="_blank" rel="noopener noreferrer">
               <span>{contact.label}</span><span aria-hidden="true">↗</span>
             </a>
           ))}

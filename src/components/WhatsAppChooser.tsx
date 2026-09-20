@@ -51,7 +51,7 @@ export default function WhatsAppChooser({
           <span className="whatsapp-panel__title">¿Por cuál número desea escribirnos?</span>
           <span className="whatsapp-panel__options">
             {contacts.map((contact) => (
-              <a href={`https://wa.me/${contact.number}?text=${encodeURIComponent(message)}`} key={contact.number} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+              <a href={`https://wa.me/${contact.number}?text=${encodeURIComponent(message)}`} key={contact.number} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
                 {contact.label} <span aria-hidden="true">↗</span>
               </a>
             ))}
