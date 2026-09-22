@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-
-const contacts = [
-  { label: "WhatsApp 6011-8430", number: "50660118430" },
-  { label: "WhatsApp 7263-4928", number: "50672634928" },
-];
+import { whatsappContacts } from "../data/contact";
 
 type WhatsAppChooserProps = {
   label: string;
@@ -50,7 +46,7 @@ export default function WhatsAppChooser({
           <span className="whatsapp-panel__eyebrow">Elija un contacto</span>
           <span className="whatsapp-panel__title">¿Por cuál número desea escribirnos?</span>
           <span className="whatsapp-panel__options">
-            {contacts.map((contact) => (
+            {whatsappContacts.map((contact) => (
               <a href={`https://wa.me/${contact.number}?text=${encodeURIComponent(message)}`} key={contact.number} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
                 {contact.label} <span aria-hidden="true">↗</span>
               </a>

@@ -114,6 +114,25 @@ section[id], #catalogo { scroll-margin-top: 92px; }
 .contact-link:hover, .contact-email:hover { color: var(--blue-light); }
 .contact-email { color: var(--silver); font-size: .8rem; margin-top: 18px; transition: color 180ms ease; }
 
+.section--payments { background: var(--surface); }
+.payments-heading { align-items: end; border-bottom: 1px solid var(--line); display: flex; gap: 40px; justify-content: space-between; padding-bottom: 28px; }
+.payments-heading h2 { font-size: clamp(2rem, 4vw, 3.65rem); font-weight: 700; letter-spacing: -.06em; line-height: 1.04; margin: 0; }
+.payments-heading > p { color: var(--muted); font-size: .92rem; line-height: 1.65; margin: 0 0 2px; max-width: 440px; }
+.payment-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 24px; }
+.payment-card { background: var(--white); border: 1px solid var(--line); padding: 24px; }
+.payment-card__label { color: var(--blue-bright); font-size: .66rem; font-weight: 750; letter-spacing: .12em; margin: 0 0 12px; text-transform: uppercase; }
+.payment-card h3 { font-size: 1.2rem; font-weight: 650; line-height: 1.3; margin: 0 0 22px; }
+.payment-fields { display: grid; gap: 0; margin: 0; }
+.payment-field { border-top: 1px solid var(--line); display: grid; gap: 7px; padding: 14px 0; }
+.payment-field > span, .payment-field dt { color: var(--muted); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.payment-field strong, .payment-field dd { color: var(--ink); font-size: .95rem; line-height: 1.45; margin: 0; overflow-wrap: anywhere; }
+.payment-field--featured { border: 1px solid var(--line); padding: 16px; }
+.copy-control { align-items: center; display: inline-flex; flex-wrap: wrap; gap: 10px; margin-top: 3px; }
+.copy-button { background: transparent; border: 1px solid var(--blue); color: var(--blue); cursor: pointer; font: inherit; font-size: .74rem; min-height: 36px; padding: 7px 11px; transition: background 180ms ease, color 180ms ease; }
+.copy-button:hover { background: var(--blue); color: var(--white); }
+.copy-status { color: var(--blue-bright); font-size: .74rem; font-weight: 700; }
+.payment-note { color: var(--muted); font-size: .78rem; line-height: 1.55; margin: 18px 0 0; }
+
 .site-footer { border-top: 1px solid var(--line); padding: 38px 0 25px; }
 .footer__top { display: grid; gap: 38px; grid-template-columns: 1.3fr .7fr 1fr; }
 .wordmark--footer { margin-bottom: 15px; }
@@ -184,6 +203,7 @@ section[id], #catalogo { scroll-margin-top: 92px; }
   .hero-offer { max-width: 620px; }
   .catalog-heading { align-items: flex-start; flex-direction: column; gap: 18px; }
   .catalog-heading { padding-bottom: 24px; }
+  .payments-heading { align-items: flex-start; flex-direction: column; gap: 18px; }
   .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about-grid, .contact-box, .footer__top { gap: 30px; grid-template-columns: 1fr; }
   .footer-contact { align-items: flex-start; }
@@ -206,6 +226,8 @@ section[id], #catalogo { scroll-margin-top: 92px; }
   .hero__actions > a, .hero__actions > .whatsapp-chooser, .hero__actions .button-secondary { width: 100%; }
   .hero__actions .button-primary, .hero__actions .button-secondary { justify-content: space-between; }
   .hero-offer { padding: 19px; }
+  .payment-grid { grid-template-columns: 1fr; }
+  .payment-card { padding: 19px; }
   .category-button { min-height: 52px; }
   .category-list { flex-wrap: nowrap; max-width: 100%; overflow-x: auto; padding-bottom: 5px; scrollbar-width: thin; }
   .category-button { flex: 0 0 auto; }
@@ -213,8 +235,6 @@ section[id], #catalogo { scroll-margin-top: 92px; }
   .course-card { min-height: 0; padding: 16px; }
   .course-detail { padding-bottom: 70px; }
   .course-detail__header h1 { font-size: clamp(2.35rem, 12vw, 3.5rem); }
-  .course-detail__header-action, .course-detail__header-action .whatsapp-chooser, .course-detail__header-action .button-primary { width: 100%; }
-  .course-detail__header-action .button-primary { justify-content: space-between; }
   .course-facts, .related-courses__grid { grid-template-columns: 1fr; }
   .whatsapp-panel { left: 0; min-width: min(280px, calc(100vw - 44px)); right: auto; }
   .site-footer { padding-top: 30px; }
