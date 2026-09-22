@@ -20,11 +20,20 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState<LandingSection>(pathname === "/" ? "inicio" : "cursos");
 
   useEffect(() => {
+    const observedSections = pathname === "/"
+      ? links.map(({ section }) => document.getElementById(section)).filter((section): section is HTMLElement => Boolean(section))
+      : [];
     let frameId = 0;
     const handleScroll = () => {
       if (frameId) return;
       frameId = window.requestAnimationFrame(() => {
         setIsScrolled(window.scrollY > 8);
+        if (observedSections.length > 0) {
+          const headerHeight = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 0;
+          const active = observedSections.filter((section) => section.getBoundingClientRect().top <= headerHeight + 24).at(-1);
+          const nextSection = active?.id as LandingSection | undefined;
+          if (nextSection) setActiveSection((current) => current === nextSection ? current : nextSection);
+        }
         frameId = 0;
       });
     };
@@ -34,19 +43,6 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       if (frameId) window.cancelAnimationFrame(frameId);
     };
-  }, []);
-
-  useEffect(() => {
-    if (pathname !== "/") return;
-
-    const observedSections = links.map(({ section }) => document.getElementById(section)).filter((section): section is HTMLElement => Boolean(section));
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible) setActiveSection(visible.target.id as LandingSection);
-    }, { rootMargin: "-18% 0px -62% 0px", threshold: [0, .25, .5, .75] });
-
-    observedSections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
   }, [pathname]);
 
   const selectSection = (section: LandingSection) => setActiveSection(section);
