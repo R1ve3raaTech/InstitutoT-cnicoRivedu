@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { whatsappContacts } from "../data/contact";
 
 type WhatsAppChooserProps = {
@@ -8,6 +8,7 @@ type WhatsAppChooserProps = {
   message?: string;
   className?: string;
   variant?: "primary" | "secondary" | "quiet";
+  icon?: ReactNode;
 };
 
 export default function WhatsAppChooser({
@@ -15,6 +16,7 @@ export default function WhatsAppChooser({
   message = "Hola, me gustaría recibir información sobre el Instituto Técnico Rivedu.",
   className = "",
   variant = "primary",
+  icon,
 }: WhatsAppChooserProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId().replaceAll(":", "");
@@ -51,6 +53,7 @@ export default function WhatsAppChooser({
   return (
     <span className={`whatsapp-chooser ${className}`}>
       <button ref={buttonRef} type="button" className={buttonStyles} aria-haspopup="dialog" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((current) => !current)}>
+        {icon}
         {label} <span aria-hidden="true">↗</span>
       </button>
       <span ref={panelRef} className={`whatsapp-panel ${open ? "whatsapp-panel--open" : ""}`} id={panelId} role="dialog" aria-label="Elegir contacto de WhatsApp" aria-hidden={!open} inert={!open}>

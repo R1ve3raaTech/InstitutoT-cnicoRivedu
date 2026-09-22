@@ -1,13 +1,15 @@
-import Link from "next/link";
+import Image from "next/image";
 import SectionLink from "./SectionLink";
 import WhatsAppChooser from "./WhatsAppChooser";
+import CardSwap from "./CardSwap";
+import SplitText from "./SplitText";
 
 const featuredCourses = [
   { title: "Excel", slug: "excel-desde-cero" },
   { title: "Inglés Conversacional", slug: "ingles-conversacional" },
   { title: "Bachillerato por Madurez", slug: "bachillerato-por-madurez" },
   { title: "CCNA", slug: "ccna" },
-];
+] as const;
 
 export default function Hero() {
   return (
@@ -15,25 +17,23 @@ export default function Hero() {
       <div className="container hero__grid">
         <div className="hero__copy">
           <p className="eyebrow"><span /> Formación para avanzar</p>
-          <h1>Cursos y capacitaciones para seguir <em>aprendiendo.</em></h1>
+          <SplitText text="Cursos y capacitaciones para seguir aprendiendo." highlight="aprendiendo." />
           <p className="hero__intro">En Instituto Técnico Rivedu encontrará opciones de formación en tecnología, idiomas, educación y otras áreas. Explore los cursos y consulte cómo inscribirse.</p>
           <div className="hero__actions">
             <SectionLink className="button-primary" section="cursos">Explorar cursos <span aria-hidden="true">↓</span></SectionLink>
             <WhatsAppChooser label="Consultar por WhatsApp" variant="secondary" />
           </div>
         </div>
-        <div className="hero-offer" aria-label="Cursos destacados de la oferta académica">
-          <div className="hero-offer__header"><span>Oferta académica</span><span aria-hidden="true">↗</span></div>
-          <p className="hero-offer__title">Encuentre una opción para su próximo paso.</p>
-          <div className="hero-offer__courses">
-            {featuredCourses.map((course, index) => (
-              <Link href={`/cursos/${course.slug}`} className="hero-course" key={course.slug}>
-                <span className="hero-course__index">0{index + 1}</span>
-                <span>{course.title}</span>
-                <span aria-hidden="true">→</span>
-              </Link>
-            ))}
+        <div className="hero-visual" aria-label="Áreas de formación del Instituto Técnico Rivedu">
+          <div className="hero-visual__topline"><span>Instituto Técnico Rivedu</span><span>01—04</span></div>
+          <div className="hero-visual__stage">
+            <span className="hero-visual__grid" aria-hidden="true" />
+            <span className="hero-visual__ring hero-visual__ring--outer" aria-hidden="true" />
+            <span className="hero-visual__ring hero-visual__ring--inner" aria-hidden="true" />
+            <Image className="hero-visual__logo" src="/logo-rivedu.png" alt="" width={280} height={280} priority />
+            <span className="hero-visual__caption">Aprendizaje<br />con dirección.</span>
           </div>
+          <CardSwap items={featuredCourses} />
         </div>
       </div>
     </section>

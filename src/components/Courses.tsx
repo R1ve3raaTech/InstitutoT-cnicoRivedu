@@ -3,7 +3,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import { courseCategories, courses, type CourseCategory } from "../data/courses";
-import RevealOnScroll from "./RevealOnScroll";
+import AnimatedContent from "./AnimatedContent";
+import CourseArtwork from "./CourseArtwork";
+import SpotlightCard from "./SpotlightCard";
+
+function graphicForCategory(category: CourseCategory) {
+  if (category.startsWith("Tecnolog")) return "technology";
+  if (category === "Idiomas") return "language";
+  if (category.startsWith("Educaci")) return "education";
+  return "professional";
+}
 
 export default function Courses() {
   const [activeCategory, setActiveCategory] = useState<CourseCategory>("Todos");
@@ -13,7 +22,7 @@ export default function Courses() {
 
   return (
     <section className="section section--courses" id="cursos">
-      <RevealOnScroll className="container">
+      <AnimatedContent className="container">
         <div className="catalog-heading">
           <div>
             <p className="eyebrow"><span /> Oferta académica</p>
@@ -38,9 +47,9 @@ export default function Courses() {
         </div>
 
         <div className="course-grid" id="catalogo" aria-live="polite">
-          {visibleCourses.map((course) => (
-            <article className="course-card" key={course.slug}>
-              <span className="course-card__accent" aria-hidden="true" />
+          {visibleCourses.map((course, index) => (
+            <SpotlightCard className={`course-card course-card--${graphicForCategory(course.category)} ${index === 0 ? "course-card--featured" : ""}`} key={course.slug}>
+              <div className="course-card__visual"><CourseArtwork course={course} /></div>
               <div className="course-card__body">
                 <span className="course-card__category">{course.category}</span>
                 <h3>{course.title}</h3>
@@ -49,11 +58,11 @@ export default function Courses() {
                   Ver detalles <span aria-hidden="true">→</span>
                 </Link>
               </div>
-            </article>
+            </SpotlightCard>
           ))}
         </div>
         <p className="section-note">Para conocer horarios, precios y disponibilidad, consulte directamente con el instituto.</p>
-      </RevealOnScroll>
+      </AnimatedContent>
     </section>
   );
 }

@@ -12,7 +12,10 @@ function scrollToSection(section: LandingSection) {
   if (!target) return;
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const headerOffset = Math.ceil(header?.getBoundingClientRect().height ?? 0) + 16;
+  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
+  window.scrollTo({ top, behavior: prefersReducedMotion ? "auto" : "smooth" });
 }
 
 type SectionLinkProps = {
@@ -20,9 +23,10 @@ type SectionLinkProps = {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  "aria-current"?: "page" | undefined;
 };
 
-export default function SectionLink({ section, children, className, onClick }: SectionLinkProps) {
+export default function SectionLink({ section, children, className, onClick, "aria-current": ariaCurrent }: SectionLinkProps) {
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.();
 
@@ -41,7 +45,7 @@ export default function SectionLink({ section, children, className, onClick }: S
     }
   };
 
-  return <Link className={className} href="/" onClick={handleClick}>{children}</Link>;
+  return <Link className={className} href="/" onClick={handleClick} aria-current={ariaCurrent}>{children}</Link>;
 }
 
 export { scrollToSection };

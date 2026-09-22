@@ -1,11 +1,11 @@
 import WhatsAppChooser from "./WhatsAppChooser";
 import { whatsappContacts } from "../data/contact";
-import RevealOnScroll from "./RevealOnScroll";
+import AnimatedContent from "./AnimatedContent";
 
 export default function Contact() {
   return (
     <section className="section section--contact" id="contacto">
-      <RevealOnScroll className="container">
+      <AnimatedContent className="container">
         <div className="contact-box">
         <div className="contact-box__copy">
           <p className="eyebrow eyebrow--light"><span /> Contacto</p>
@@ -22,7 +22,7 @@ export default function Contact() {
           <WhatsAppChooser label="Consultar por WhatsApp" variant="quiet" message="Hola, me gustaría recibir información sobre los cursos del Instituto Técnico Rivedu." />
         </div>
         </div>
-      </RevealOnScroll>
+      </AnimatedContent>
     </section>
   );
 }

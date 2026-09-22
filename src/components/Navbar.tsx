@@ -2,23 +2,25 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import SectionLink from "./SectionLink";
+import { usePathname } from "next/navigation";
+import SectionLink, { type LandingSection } from "./SectionLink";
 import WhatsAppChooser from "./WhatsAppChooser";
+import BottomNavigation, { NavigationIcon } from "./BottomNavigation";
 
-const links = [
-  { label: "Inicio", section: "inicio" as const },
-  { label: "Cursos", section: "cursos" as const },
-  { label: "Nosotros", section: "nosotros" as const },
-  { label: "Contacto", section: "contacto" as const },
+const links: Array<{ label: string; section: LandingSection; icon: "home" | "book" | "cap" | "message" }> = [
+  { label: "Inicio", section: "inicio", icon: "home" },
+  { label: "Cursos", section: "cursos", icon: "book" },
+  { label: "Nosotros", section: "nosotros", icon: "cap" },
+  { label: "Contacto", section: "contacto", icon: "message" },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<LandingSection>(pathname === "/" ? "inicio" : "cursos");
 
   useEffect(() => {
     let frameId = 0;
-
     const handleScroll = () => {
       if (frameId) return;
       frameId = window.requestAnimationFrame(() => {
@@ -26,7 +28,6 @@ export default function Navbar() {
         frameId = 0;
       });
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => {
@@ -36,31 +37,38 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
+    if (pathname !== "/") return;
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    const observedSections = links.map(({ section }) => document.getElementById(section)).filter((section): section is HTMLElement => Boolean(section));
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveSection(visible.target.id as LandingSection);
+    }, { rootMargin: "-18% 0px -62% 0px", threshold: [0, .25, .5, .75] });
+
+    observedSections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const selectSection = (section: LandingSection) => setActiveSection(section);
+  const visibleActiveSection = pathname === "/" ? activeSection : "cursos";
 
   return (
-    <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}>
-      <nav className="container nav" aria-label="Navegación principal">
-        <SectionLink className="wordmark" section="inicio" onClick={() => setMenuOpen(false)}>
-          <Image className="brand-logo brand-logo--nav" src="/logo-rivedu.png" alt="Instituto Técnico Rivedu" width={52} height={52} priority />
-          <span><strong>Instituto Técnico</strong><small>Rivedu</small></span>
-        </SectionLink>
-        <button type="button" className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-menu" aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} onClick={() => setMenuOpen((current) => !current)}>
-          <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
-        </button>
-        <div className={`nav-menu ${menuOpen ? "nav-menu--open" : ""}`} id="main-menu">
-          <div className="nav-links">
-            {links.map((link) => <SectionLink section={link.section} key={link.section} onClick={() => setMenuOpen(false)}>{link.label}</SectionLink>)}
+    <>
+      <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}>
+        <nav className="container nav" aria-label="Navegación principal">
+          <SectionLink className="wordmark" section="inicio" onClick={() => selectSection("inicio")}>
+            <Image className="brand-logo brand-logo--nav" src="/logo-rivedu.png" alt="Instituto Técnico Rivedu" width={52} height={52} priority />
+            <span><strong>Instituto Técnico</strong><small>Rivedu</small></span>
+          </SectionLink>
+          <div className="nav-menu" id="main-menu">
+            <div className="nav-links">
+              {links.map((link) => <SectionLink className={`nav-link ${visibleActiveSection === link.section ? "nav-link--active" : ""}`} section={link.section} key={link.section} onClick={() => selectSection(link.section)} aria-current={visibleActiveSection === link.section ? "page" : undefined}><NavigationIcon name={link.icon} /><span>{link.label}</span></SectionLink>)}
+            </div>
+            <WhatsAppChooser label="Inscríbase" message="Hola, me gustaría recibir información para inscribirme en el Instituto Técnico Rivedu." className="nav-cta" icon={<NavigationIcon name="arrow" />} />
           </div>
-          <WhatsAppChooser label="Inscríbase" message="Hola, me gustaría recibir información para inscribirme en el Instituto Técnico Rivedu." className="nav-cta" />
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+      <BottomNavigation activeSection={visibleActiveSection} onSectionSelect={selectSection} />
+    </>
   );
 }

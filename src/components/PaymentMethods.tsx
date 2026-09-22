@@ -1,11 +1,11 @@
 import CopyButton from "./CopyButton";
 import { paymentDetails } from "../data/contact";
-import RevealOnScroll from "./RevealOnScroll";
+import AnimatedContent from "./AnimatedContent";
 
 export default function PaymentMethods() {
   return (
     <section className="section section--payments" id="medios-pago">
-      <RevealOnScroll className="container">
+      <AnimatedContent className="container">
         <div className="payments-heading">
           <div>
             <p className="eyebrow"><span /> Medios de pago</p>
@@ -15,7 +15,7 @@ export default function PaymentMethods() {
         </div>
 
         <div className="payment-grid">
-          <article className="payment-card">
+          <article className="payment-card payment-card--sinpe">
             <p className="payment-card__label">SINPE Móvil</p>
             <h3>Pago por SINPE Móvil</h3>
             <div className="payment-field payment-field--featured">
@@ -25,7 +25,7 @@ export default function PaymentMethods() {
             </div>
           </article>
 
-          <article className="payment-card">
+          <article className="payment-card payment-card--bank">
             <p className="payment-card__label">Transferencia bancaria</p>
             <h3>{paymentDetails.bank}</h3>
             <dl className="payment-fields">
@@ -52,7 +52,7 @@ export default function PaymentMethods() {
         </div>
 
         <p className="payment-note">Antes de realizar el pago, confirme con el instituto el monto y los detalles de su inscripción.</p>
-      </RevealOnScroll>
+      </AnimatedContent>
     </section>
   );
 }
