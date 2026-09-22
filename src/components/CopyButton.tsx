@@ -29,7 +29,7 @@ export default function CopyButton({ value, label }: CopyButtonProps) {
   return (
     <span className="copy-control">
       <button type="button" className="copy-button" onClick={handleCopy}>
-        {label}
+        {copied ? "Copiado" : label}
       </button>
       {copied && <span className="copy-status" role="status" aria-live="polite">Copiado</span>}
     </span>

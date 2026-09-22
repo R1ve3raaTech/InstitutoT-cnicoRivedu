@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { whatsappContacts } from "../data/contact";
 
 type WhatsAppChooserProps = {
@@ -18,6 +18,18 @@ export default function WhatsAppChooser({
 }: WhatsAppChooserProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId().replaceAll(":", "");
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLSpanElement>(null);
+  const wasOpen = useRef(false);
+
+  useEffect(() => {
+    if (open) {
+      panelRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
+    } else if (wasOpen.current) {
+      buttonRef.current?.focus();
+    }
+    wasOpen.current = open;
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -38,11 +50,10 @@ export default function WhatsAppChooser({
 
   return (
     <span className={`whatsapp-chooser ${className}`}>
-      <button type="button" className={buttonStyles} aria-haspopup="dialog" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((current) => !current)}>
+      <button ref={buttonRef} type="button" className={buttonStyles} aria-haspopup="dialog" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((current) => !current)}>
         {label} <span aria-hidden="true">↗</span>
       </button>
-      {open && (
-        <span className="whatsapp-panel" id={panelId} role="dialog" aria-label="Elegir contacto de WhatsApp">
+      <span ref={panelRef} className={`whatsapp-panel ${open ? "whatsapp-panel--open" : ""}`} id={panelId} role="dialog" aria-label="Elegir contacto de WhatsApp" aria-hidden={!open} inert={!open}>
           <span className="whatsapp-panel__eyebrow">Elija un contacto</span>
           <span className="whatsapp-panel__title">¿Por cuál número desea escribirnos?</span>
           <span className="whatsapp-panel__options">
@@ -52,8 +63,7 @@ export default function WhatsAppChooser({
               </a>
             ))}
           </span>
-        </span>
-      )}
+      </span>
     </span>
   );
 }

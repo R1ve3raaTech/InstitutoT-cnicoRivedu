@@ -27,12 +27,12 @@ export default function CourseDetail({ course }: CourseDetailProps) {
       <div className="course-detail__topline" />
       <main className="course-detail">
         <div className="container">
-          <nav className="breadcrumb" aria-label="Ruta de navegación">
+          <nav className="breadcrumb course-detail__enter" aria-label="Ruta de navegación">
             <SectionLink section="inicio">Inicio</SectionLink><span aria-hidden="true">/</span><SectionLink section="cursos">Cursos</SectionLink><span aria-hidden="true">/</span><span aria-current="page">{course.title}</span>
           </nav>
           <SectionLink className="course-detail__back" section="cursos">← Volver a los cursos</SectionLink>
 
-          <header className="course-detail__header">
+          <header className="course-detail__header course-detail__enter course-detail__enter--delayed">
             <div className="course-detail__header-copy">
               <p className="course-detail__category">{course.category}</p>
               <h1>{course.title}</h1>
@@ -40,7 +40,7 @@ export default function CourseDetail({ course }: CourseDetailProps) {
             </div>
           </header>
 
-          <div className="course-education">
+          <div className="course-education course-detail__enter course-detail__enter--delayed-more">
             <section className="course-education__intro" aria-labelledby="course-introduction">
               <h2 id="course-introduction">{educationalContent.introductionTitle}</h2>
               <p>{educationalContent.introduction}</p>
@@ -73,7 +73,7 @@ export default function CourseDetail({ course }: CourseDetailProps) {
             </section>
           )}
 
-          <section className="course-inquiry" aria-labelledby="course-inquiry-title">
+          <section className="course-inquiry course-detail__enter" aria-labelledby="course-inquiry-title">
             <div>
               <p className="eyebrow eyebrow--light"><span /> Inscripción</p>
               <h2 id="course-inquiry-title">¿Desea información sobre este curso?</h2>

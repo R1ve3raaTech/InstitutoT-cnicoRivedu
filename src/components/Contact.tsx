@@ -1,10 +1,12 @@
 import WhatsAppChooser from "./WhatsAppChooser";
 import { whatsappContacts } from "../data/contact";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function Contact() {
   return (
     <section className="section section--contact" id="contacto">
-      <div className="container contact-box">
+      <RevealOnScroll className="container">
+        <div className="contact-box">
         <div className="contact-box__copy">
           <p className="eyebrow eyebrow--light"><span /> Contacto</p>
           <h2>¿Necesita información sobre un curso?</h2>
@@ -19,7 +21,8 @@ export default function Contact() {
           <a className="contact-email" href="mailto:direccionrivedu@gmail.com">direccionrivedu@gmail.com</a>
           <WhatsAppChooser label="Consultar por WhatsApp" variant="quiet" message="Hola, me gustaría recibir información sobre los cursos del Instituto Técnico Rivedu." />
         </div>
-      </div>
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }

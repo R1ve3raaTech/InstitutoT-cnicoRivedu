@@ -1,10 +1,11 @@
 import CopyButton from "./CopyButton";
 import { paymentDetails } from "../data/contact";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function PaymentMethods() {
   return (
     <section className="section section--payments" id="medios-pago">
-      <div className="container">
+      <RevealOnScroll className="container">
         <div className="payments-heading">
           <div>
             <p className="eyebrow"><span /> Medios de pago</p>
@@ -51,7 +52,7 @@ export default function PaymentMethods() {
         </div>
 
         <p className="payment-note">Antes de realizar el pago, confirme con el instituto el monto y los detalles de su inscripción.</p>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 }

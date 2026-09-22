@@ -14,6 +14,26 @@ const links = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    let frameId = 0;
+
+    const handleScroll = () => {
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 8);
+        frameId = 0;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -25,7 +45,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}>
       <nav className="container nav" aria-label="Navegación principal">
         <SectionLink className="wordmark" section="inicio" onClick={() => setMenuOpen(false)}>
           <Image className="brand-logo brand-logo--nav" src="/logo-rivedu.png" alt="Instituto Técnico Rivedu" width={52} height={52} priority />

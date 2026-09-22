@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { courseCategories, courses, type CourseCategory } from "../data/courses";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function Courses() {
   const [activeCategory, setActiveCategory] = useState<CourseCategory>("Todos");
@@ -12,7 +13,7 @@ export default function Courses() {
 
   return (
     <section className="section section--courses" id="cursos">
-      <div className="container">
+      <RevealOnScroll className="container">
         <div className="catalog-heading">
           <div>
             <p className="eyebrow"><span /> Oferta académica</p>
@@ -52,7 +53,7 @@ export default function Courses() {
           ))}
         </div>
         <p className="section-note">Para conocer horarios, precios y disponibilidad, consulte directamente con el instituto.</p>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 }
