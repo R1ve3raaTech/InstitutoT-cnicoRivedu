@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionLink from "./SectionLink";
 import WhatsAppChooser from "./WhatsAppChooser";
 
 const featuredCourses = [
@@ -17,7 +18,7 @@ export default function Hero() {
           <h1>Cursos y capacitaciones para seguir <em>aprendiendo.</em></h1>
           <p className="hero__intro">En Instituto Técnico Rivedu encontrará opciones de formación en tecnología, idiomas, educación y otras áreas. Explore los cursos y consulte cómo inscribirse.</p>
           <div className="hero__actions">
-            <a className="button-primary" href="#cursos">Explorar cursos <span aria-hidden="true">↓</span></a>
+            <SectionLink className="button-primary" section="cursos">Explorar cursos <span aria-hidden="true">↓</span></SectionLink>
             <WhatsAppChooser label="Consultar por WhatsApp" variant="secondary" />
           </div>
         </div>

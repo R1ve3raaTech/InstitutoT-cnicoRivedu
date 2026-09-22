@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Course } from "../data/courses";
 import { getRelatedCourses } from "../data/courses";
+import SectionLink from "./SectionLink";
 import WhatsAppChooser from "./WhatsAppChooser";
 
 type CourseDetailProps = {
@@ -27,9 +28,9 @@ export default function CourseDetail({ course }: CourseDetailProps) {
       <main className="course-detail">
         <div className="container">
           <nav className="breadcrumb" aria-label="Ruta de navegación">
-            <Link href="/#inicio">Inicio</Link><span aria-hidden="true">/</span><Link href="/#cursos">Cursos</Link><span aria-hidden="true">/</span><span aria-current="page">{course.title}</span>
+            <SectionLink section="inicio">Inicio</SectionLink><span aria-hidden="true">/</span><SectionLink section="cursos">Cursos</SectionLink><span aria-hidden="true">/</span><span aria-current="page">{course.title}</span>
           </nav>
-          <Link className="course-detail__back" href="/#cursos">← Volver a los cursos</Link>
+          <SectionLink className="course-detail__back" section="cursos">← Volver a los cursos</SectionLink>
 
           <header className="course-detail__header">
             <div className="course-detail__header-copy">
