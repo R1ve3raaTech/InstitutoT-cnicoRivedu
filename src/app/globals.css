@@ -129,7 +129,7 @@ section[id], #catalogo { scroll-margin-top: calc(var(--nav-height) + 16px); }
 .course-card__link:hover { color: var(--blue); }
 .section-note { color: var(--muted); font-size: .74rem; line-height: 1.5; margin: 22px 0 0; }
 
-.section--about { background: var(--surface); padding-bottom: 42px; padding-top: 58px; }
+.section--about { background: var(--surface); padding-bottom: 34px; padding-top: 58px; }
 .about-grid { display: grid; gap: clamp(42px, 7vw, 88px); grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); }
 .about-copy { border-left: 2px solid var(--blue-light); color: var(--muted); font-size: .98rem; line-height: 1.7; padding-left: 32px; }
 .about-copy p { margin: 0; max-width: 520px; }
@@ -147,6 +147,8 @@ section[id], #catalogo { scroll-margin-top: calc(var(--nav-height) + 16px); }
 .contact-link:first-child { border-top: 1px solid rgba(184,190,201,.55); }
 .contact-link:hover, .contact-email:hover { color: var(--blue-light); }
 .contact-email { color: var(--silver); font-size: .8rem; margin-top: 18px; transition: color 180ms ease; }
+.contact-box .button-quiet { border: 1px solid var(--blue-light); color: var(--white); margin-top: 18px; padding: 9px 13px; width: fit-content; }
+.contact-box .button-quiet:hover { background: var(--blue-bright); color: var(--white); }
 
 .section--payments { background: var(--surface); }
 .payments-heading { align-items: end; border-bottom: 1px solid var(--line); display: flex; gap: 40px; justify-content: space-between; padding-bottom: 28px; }
@@ -220,7 +222,7 @@ section[id], #catalogo { scroll-margin-top: calc(var(--nav-height) + 16px); }
 .related-course small { color: var(--blue-bright); font-size: .76rem; font-weight: 650; margin-top: auto; }
 .related-course b { font-size: 1rem; font-weight: 400; margin-left: 6px; }
 .section--courses { padding-bottom: 64px; }
-.section--payments { padding-top: 68px; }
+.section--payments { padding-top: 52px; }
 
 /* Fase 10: editorial system and restrained React Bits-style interactions. */
 .hero { background: var(--surface); border-bottom: 1px solid var(--line); overflow: hidden; padding-bottom: 96px; padding-top: 88px; }
@@ -267,7 +269,6 @@ section[id], #catalogo { scroll-margin-top: calc(var(--nav-height) + 16px); }
 .payment-grid { grid-template-columns: .72fr 1.28fr; }
 .payment-card { min-width: 0; position: relative; }
 .payment-card--sinpe { align-self: start; }
-.payment-card--sinpe::after { border: 1px solid var(--blue-light); content: ""; height: 48px; opacity: .45; position: absolute; right: 22px; top: 23px; transform: rotate(12deg); width: 48px; }
 .payment-card--bank { border-top: 4px solid var(--blue); }
 .contact-box { background: var(--blue); overflow: hidden; padding-inline: clamp(20px, 4vw, 58px); position: relative; }
 .contact-box::after { border: 1px solid rgba(112,152,217,.45); border-radius: 50%; content: ""; height: 360px; position: absolute; right: -80px; top: -150px; width: 360px; }

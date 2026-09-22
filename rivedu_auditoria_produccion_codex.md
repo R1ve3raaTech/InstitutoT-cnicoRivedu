@@ -34,7 +34,7 @@ Prueba, con navegador real si está disponible, estos recorridos:
 - Menú móvil: abrir, cerrar, navegar, manejo de foco y Escape donde corresponda.
 - Filtros: conteos, estado activo, accesibilidad por teclado, desplazamiento horizontal solo dentro de chips en móvil y ausencia de categorías visualmente deshabilitadas por error.
 - Cursos relacionados: máximo tres, sin curso actual, enlaces correctos.
-- WhatsApp: ambos números `50660118430` y `50672634928`, URL `wa.me`, `encodeURIComponent`, nombre correcto del curso, selector con apertura/cierre/foco accesibles, sin enviar ni abrir conversaciones automáticamente. **No afirmes que un mensaje se envió** si solo probaste el enlace.
+- WhatsApp: ambos números `50664067817` y `50672634928`, URL `wa.me`, `encodeURIComponent`, nombre correcto del curso, selector con apertura/cierre/foco accesibles, sin enviar ni abrir conversaciones automáticamente. **No afirmes que un mensaje se envió** si solo probaste el enlace.
 - Correo `direccionrivedu@gmail.com`: `mailto:` válido; enlaces externos con atributos apropiados.
 - Comprueba que «Inscríbase» no induzca a creer que existe una matrícula automática: en esta web se consulta por WhatsApp.
 
