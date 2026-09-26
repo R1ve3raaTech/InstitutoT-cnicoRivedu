@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Course } from "../data/courses";
 import { getRelatedCourses } from "../data/courses";
+import CourseArtwork from "./CourseArtwork";
 import SectionLink from "./SectionLink";
 import WhatsAppChooser from "./WhatsAppChooser";
 
@@ -32,12 +33,17 @@ export default function CourseDetail({ course }: CourseDetailProps) {
           </nav>
           <SectionLink className="course-detail__back" section="cursos">← Volver a los cursos</SectionLink>
 
-          <header className="course-detail__header course-detail__enter course-detail__enter--delayed">
+          <header className={`course-detail__header course-detail__enter course-detail__enter--delayed ${course.artwork ? "course-detail__header--with-artwork" : ""}`}>
             <div className="course-detail__header-copy">
               <p className="course-detail__category">{course.category}</p>
               <h1>{course.title}</h1>
               <p className="course-detail__short-description">{course.shortDescription}</p>
             </div>
+            {course.artwork && (
+              <div className="course-detail__artwork-frame">
+                <CourseArtwork course={course} variant="detail" />
+              </div>
+            )}
           </header>
 
           <div className="course-education course-detail__enter course-detail__enter--delayed-more">
